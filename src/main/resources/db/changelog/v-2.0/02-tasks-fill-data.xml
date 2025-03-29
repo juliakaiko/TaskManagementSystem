@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet id="tasks_fill_data_2" author="julia_kaiko">
+        <preConditions>
+            <tableExists tableName="tasks"/>
+        </preConditions>
+        <sql>
+            INSERT INTO tasks (title, description, status, priority, author_id, performer_id)
+            VALUES ('Task 1', 'Description for Task 1', 'pending', 'high', 1, 2);
+            INSERT INTO tasks (title, description, status, priority, author_id, performer_id)
+            VALUES ('Task 2', 'Description for Task 2', 'in progress', 'low', 2, 3);
+            INSERT INTO tasks (title, description, status, priority, author_id, performer_id)
+            VALUES ('Task 3', 'Description for Task 3', 'completed', 'medium', 1, 3);
+            INSERT INTO tasks (title, description, status, priority, author_id, performer_id)
+            VALUES ('Task 4', 'Description for Task 4', 'pending', 'low', 4, 1);
+            INSERT INTO tasks (title, description, status, priority, author_id, performer_id)
+            VALUES ('Task 5', 'Description for Task 5', 'in progress', 'medium', 3, 1);
+            INSERT INTO tasks (title, description, status, priority, author_id, performer_id)
+            VALUES ('Task 6', 'Description for Task 6', 'completed', 'high', 5, 2);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
