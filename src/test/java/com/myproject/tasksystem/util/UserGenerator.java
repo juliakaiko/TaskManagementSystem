@@ -16,4 +16,13 @@ public class UserGenerator {
                 .build();
     }
 
+    public static User generateAdmin (){
+        return User.builder()
+                .userId(1l)
+                .email("admin1@mail.ru")
+                .password("admin1")
+                .role(Role.ADMIN)
+                .build();
+    }
+
 }

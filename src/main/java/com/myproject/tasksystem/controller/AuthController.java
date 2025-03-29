@@ -40,7 +40,7 @@ public class AuthController {
         JwtResponse response = authenticationService.registrate(request);
 
         return ObjectUtils.isEmpty(response)
-                ? ResponseEntity.notFound().build()
+                ? ResponseEntity.notFound().build() //404
                 : ResponseEntity.ok(response);
     }
 
@@ -54,7 +54,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ObjectUtils.isEmpty(response)
-                ? ResponseEntity.notFound().build()
+                ? ResponseEntity.notFound().build() //404
                 : ResponseEntity.ok(response);
     }
 }

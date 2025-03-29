@@ -8,7 +8,6 @@ import lombok.experimental.UtilityClass;
 public class TaskGenerator {
 
     User author = UserGenerator.generateUser();
-    User performer = UserGenerator.generateUser();
 
     public static Task generateTask (){
         return Task.builder()
@@ -18,7 +17,6 @@ public class TaskGenerator {
                 .status("in progress")
                 .priority("low")
                 .author(author)
-                //.taskPerformer()
                 .build();
     }
 

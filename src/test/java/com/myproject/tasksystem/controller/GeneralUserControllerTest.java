@@ -1,6 +1,5 @@
 package com.myproject.tasksystem.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myproject.tasksystem.dto.CommentDto;
 import com.myproject.tasksystem.dto.TaskDto;
 import com.myproject.tasksystem.dto.UserDto;
@@ -14,10 +13,12 @@ import com.myproject.tasksystem.service.impl.CommentServiceImpl;
 import com.myproject.tasksystem.service.impl.TaskServiceImpl;
 import com.myproject.tasksystem.service.impl.UserServiceImpl;
 import com.myproject.tasksystem.util.CommentGenerator;
+import com.myproject.tasksystem.util.JwtTokenUtils;
 import com.myproject.tasksystem.util.TaskGenerator;
 import com.myproject.tasksystem.util.UserGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.mockito.Mockito;
@@ -25,17 +26,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.security.test.context.support.WithMockUser;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = GeneralUserController.class)
 @Slf4j
-//@WithMockUser // тестрирование с аутентифицированным пользователем
+@AutoConfigureMockMvc(addFilters = false) // Отключаем фильтры безопасности для тестов
 public class GeneralUserControllerTest {
 
     private final static Long ENTITY_ID = 1l;
@@ -49,11 +48,11 @@ public class GeneralUserControllerTest {
     @MockBean
     private UserServiceImpl userService;
 
+    @MockBean
+    private JwtTokenUtils jwtTokenUtils;
+
     @Autowired
     private MockMvc mockMvc;
-
-    /*@Autowired
-    private ObjectMapper objectMapper;*/
 
     // Task tests
     @Test
